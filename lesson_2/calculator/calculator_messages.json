@@ -1,0 +1,25 @@
+{ "en" : {
+    "welcome" : "Welcome to Calculator!",
+    "first" : "What's the first number?",
+    "second" : "What's the second number?",
+    "NaN" : "Hmm...that doesn't look like a valid number.",
+    "operation" : "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+    "choice" : "Must choose 1, 2, 3, or 4.",
+    "result" : "The result is: ",
+    "repeat" : "Would you like to perform another calculation? (y/n)",
+    "invalid" : "Invalid input, please input y/n.",
+    "language" : "Calculator is multilingual! Please input 'en' for english or 'es' for spanish.",
+    "invalid_lang" : "Sorry, currently we only support english (en) and spanish (es)."
+  },
+  "es" : {
+    "welcome" : "¡Bienvenido a Calculadora!",
+    "first" : "¿Cuál es el primer número?",
+    "second" : "¿Cuál es el segundo número?",
+    "NaN" : "Hmm ... eso no parece un número válido.",
+    "operation" : "¿Qué operación te gustaría realizar?\n1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
+    "choice" : "Debe elegir 1, 2, 3 o 4.",
+    "result" :"El resultado es: ",
+    "repeat" : "¿Le gustaría realizar otro cálculo? (y/n)",
+    "invalid" : "entrada no válida, por favor ingrese y/n."
+  }
+}
