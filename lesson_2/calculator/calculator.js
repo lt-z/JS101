@@ -4,10 +4,10 @@ let language;
 
 function languageChange() {
   prompt('language');
-  let setLanguage = readline.question();
+  let setLanguage = readline.question().toLowerCase();
   while (!['en', 'es'].includes(setLanguage)) {
     prompt('invalid_lang');
-    setLanguage = readline.question();
+    setLanguage = readline.question().toLowerCase();
   }
   language = setLanguage;
 }
@@ -17,12 +17,28 @@ function prompt(key, number = '') {
   console.log(`=> ${message}${number}`);
 }
 
-function invalidNumber(number) {
+function getValidNumber(number) {
   while (number.trimStart() === '' || Number.isNaN(Number(number))) {
     prompt('NaN');
     number = readline.question();
   }
   return number;
+}
+
+function getValidChoice(choice) {
+  while (!['1', '2', '3', '4'].includes(choice)) {
+    prompt('choice');
+    choice = readline.question();
+  }
+  return choice;
+}
+
+function getValidRepeat(repeat) {
+  while (!['y', 'n'].includes(repeat)) {
+    prompt('invalid');
+    repeat = readline.question().toLowerCase();
+  }
+  return repeat;
 }
 
 function messages(message, lang = 'en') {
@@ -36,18 +52,13 @@ while (true) {
   prompt('welcome');
 
   prompt('first');
-  let number1 = invalidNumber(readline.question());
+  let number1 = getValidNumber(readline.question());
 
   prompt('second');
-  let number2 = invalidNumber(readline.question());
+  let number2 = getValidNumber(readline.question());
 
   prompt('operation');
-  let operation = readline.question();
-
-  while (!['1', '2', '3', '4'].includes(operation)) {
-    prompt('choice');
-    operation = readline.question();
-  }
+  let operation = getValidChoice(readline.question());
 
   let output;
   switch (operation) {
@@ -67,11 +78,7 @@ while (true) {
   prompt('result', output);
 
   prompt('repeat');
-  let repeat = readline.question();
+  let repeat = getValidRepeat(readline.question().toLowerCase());
 
-  while (!['y', 'n'].includes(repeat)) {
-    prompt('invalid');
-    repeat = readline.question();
-  }
   if (repeat === 'n') break;
 }
