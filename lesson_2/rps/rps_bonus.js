@@ -61,7 +61,7 @@ function updateScore(winner) {
 }
 
 function repeatGame(answer) {
-  while (answer[0] !== 'n' && answer[0] !== 'y') {
+  while (!['y', 'n'].includes(answer)) {
     prompt('Please enter "y" or "n".');
     answer = readline.question().toLowerCase();
   }
@@ -109,5 +109,5 @@ while (true) {
   let answer = readline.question().toLowerCase();
   answer = repeatGame(answer);
 
-  if (answer[0] !== 'y') break;
+  if (answer !== 'y') break;
 }
