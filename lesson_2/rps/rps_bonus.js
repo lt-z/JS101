@@ -49,34 +49,32 @@ function findGrandWinner(playerScore, computerScore) {
   return ((playerScore > computerScore) ? 'You' : 'Computer');
 }
 
-let playerScore;
-let computerScore;
-
-function updateScore(winner) {
+function updateScore(score, winner) {
   if (winner === 'You') {
-    playerScore += 1;
+    score.player += 1;
   } else if (winner === 'Computer') {
-    computerScore += 1;
+    score.computer += 1;
   }
 }
 
-function repeatGame(answer) {
+function repeatGame() {
+  prompt('Do you want to play again (y/n)?');
+  let answer = readline.question().toLowerCase();
+
   while (!['y', 'n'].includes(answer)) {
     prompt('Please enter "y" or "n".');
     answer = readline.question().toLowerCase();
   }
-
-  return answer;
+  return answer === 'y';
 }
 
 while (true) {
   console.clear();
-  playerScore = 0;
-  computerScore = 0;
+  let score = {player: 0, computer: 0};
 
   prompt('Welcome to Rock Paper Scissors Lizard Spock!');
   prompt('First to five wins!');
-  while (playerScore < WINNING_SCORE && computerScore < WINNING_SCORE) {
+  while (score.player < WINNING_SCORE && score.computer < WINNING_SCORE) {
     prompt(`Choose one: ${DISPLAY_CHOICES.join(', ')}`);
     let choice = readline.question();
 
@@ -96,18 +94,15 @@ while (true) {
     prompt(`You chose ${choice}, computer chose ${computerChoice}`);
     let winner = findWinner(choice, computerChoice);
     displayWinner(winner);
-    updateScore(winner);
+    updateScore(score, winner);
 
     console.log('');
-    prompt(`Score: You: ${playerScore}, Computer: ${computerScore}`);
+    prompt(`Score: You: ${score.player}, Computer: ${score.computer}`);
     console.log('-------------------------------------------------------------');
   }
 
-  let grandWinner = findGrandWinner(playerScore, computerScore);
+  let grandWinner = findGrandWinner(score.player, score.computer);
   prompt(`Grand Winner: ${grandWinner}`);
-  prompt('Do you want to play again (y/n)?');
-  let answer = readline.question().toLowerCase();
-  answer = repeatGame(answer);
 
-  if (answer !== 'y') break;
+  if (!repeatGame()) break;
 }
