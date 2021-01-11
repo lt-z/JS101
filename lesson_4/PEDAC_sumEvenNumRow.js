@@ -37,7 +37,7 @@ Input: 4 --> Output: 68
 
 // Data Structure
 /*
-- An array of sequence of arrays (rows) 
+- An array of sequence of arrays (rows)
 - Each subsequent row's # of elements increases by 1
 - The number of elements in a row is equal to the row number.
 
