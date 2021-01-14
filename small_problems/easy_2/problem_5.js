@@ -9,7 +9,7 @@ Explicit Requirements:
 
 Implicit Requirements:
 - The division operation appears to round to the lower integer
-
+- Second number should not be 0
 */
 
 // (E)xamples
