@@ -47,7 +47,6 @@ let removeDuplicates = (array) => {
 
 let union = (array1, array2) => {
   let array3 = array1.concat(array2);
-
   return removeDuplicates(array3);
 };
 

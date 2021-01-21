@@ -32,6 +32,7 @@ let average = (array) => {
   let number = array.reduce((acc, item) => {
     return acc + item;
   }, 0);
+
   return Math.floor(number / array.length);
 };
 
