@@ -94,7 +94,7 @@ function boardFull(board) {
   return emptySquares(board).length === 0;
 }
 
-function someoneWon(board) {
+function someoneWonRound(board) {
   return !!detectWinner(board);
 }
 
@@ -134,12 +134,10 @@ function joinOr(array, sep = ', ', endSep = 'or') {
 }
 
 function initializeScore() {
-  let score = {
+  return {
     player: 0,
     computer: 0,
   };
-
-  return score;
 }
 
 function displayScore(scores) {
@@ -156,8 +154,8 @@ function determineFirstMove() {
     let firstMove;
 
     while (true) {
-      firstMove = readline.question();
-      if (['player', 'computer' , 'p', 'c'].includes(firstMove.toLowerCase())) break;
+      firstMove = readline.question().toLowerCase();
+      if (['player', 'computer' , 'p', 'c'].includes(firstMove)) break;
       prompt("Sorry that's an invalid choice");
     }
     return firstMove === 'player' || firstMove === 'p' ? HUMAN_MARKER : COMPUTER_MARKER;
@@ -191,6 +189,8 @@ function repeatGame() {
 }
 
 while (true) {
+  prompt('Welcome to Tic-Tac-Toe!');
+  prompt('First to five wins.');
   let score = initializeScore();
   let currentPlayer = determineFirstMove();
   let storeFirstPlayer = currentPlayer;
@@ -205,12 +205,12 @@ while (true) {
 
       chooseSquare(board, currentPlayer);
       currentPlayer = alternatePlayer(currentPlayer);
-      if (someoneWon(board) || boardFull(board)) break;
+      if (someoneWonRound(board) || boardFull(board)) break;
     }
 
     displayBoard(board);
 
-    if (someoneWon(board)) {
+    if (someoneWonRound(board)) {
       prompt(`${detectWinner(board)} won!`);
       updateScore(score, detectWinner(board).toLowerCase());
       if (score.player === WINS_REQUIRED ||
