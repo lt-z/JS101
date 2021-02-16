@@ -127,11 +127,31 @@ function displayScore(score) {
   console.log(`You: ${score.player} Dealer: ${score.dealer}`);
 }
 
+function updateScore(score, playerTotal, dealerTotal) {
+  if (dealerTotal < playerTotal) {
+    console.log('You win the round!\n');
+    score.player += 1;
+  } else if (playerTotal === dealerTotal) {
+    console.log("It's a tie.\n");
+  } else {
+    console.log('Dealer wins the round!\n');
+    score.dealer += 1;
+  }
+}
+
 function displayWinner(score) {
   let winner = Object.keys(score).reduce((a, b) =>
     (score[a] > score[b] ? a : b));
 
-  return winner[0].toUpperCase() + winner.slice(1);
+  console.log(`${winner[0].toUpperCase() + winner.slice(1)} wins the match!`);
+}
+
+function displayInitialHands(score, playerHand, dealerHand, playerTotal) {
+  console.log(`You: ${score.player} Dealer: ${score.dealer}`);
+  console.log('----------------------');
+  console.log(`Dealer's hand: ${displaySuit(dealerHand)[0]} and unknown card\n`);
+  console.log(`Your hand: ${displayCommas(playerHand)}`);
+  console.log(`Your hand value: ${playerTotal}\n`);
 }
 
 while (true) {
@@ -148,11 +168,7 @@ while (true) {
     console.clear();
     console.log('Welcome to Whatever-One!');
     console.log('First to five wins.');
-    console.log(`You: ${score.player} Dealer: ${score.dealer}`);
-    console.log('----------------------');
-    console.log(`Dealer's hand: ${displaySuit(dealerHand)[0]} and unknown card\n`);
-    console.log(`Your hand: ${displayCommas(playerHand)}`);
-    console.log(`Your hand value: ${playerTotal}\n`);
+    displayInitialHands(score, playerHand, dealerHand, playerTotal);
 
     while (true) {
       if (validateStay()) break;
@@ -197,15 +213,7 @@ while (true) {
     }
 
     if (!busted(dealerTotal) && !busted(playerTotal)) {
-      if (dealerTotal < playerTotal) {
-        console.log('You win the round!\n');
-        score.player += 1;
-      } else if (playerTotal === dealerTotal) {
-        console.log("It's a tie.\n");
-      } else {
-        console.log('Dealer wins the round!\n');
-        score.dealer += 1;
-      }
+      updateScore(score, playerTotal, dealerTotal);
       displayFinalHand(dealerHand, playerHand);
     }
     readline.question('Press enter to continue\n');
@@ -214,6 +222,6 @@ while (true) {
   }
   console.log('----Final Score----');
   displayScore(score);
-  console.log(`${displayWinner(score)} wins the match!\n`);
+  displayWinner(score);
   if (!playAgain()) break;
 }
