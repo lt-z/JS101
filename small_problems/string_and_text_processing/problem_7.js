@@ -38,21 +38,27 @@ Convert the string to array then back to string.
 function staggeredCase(string, alphaOnly = false) {
   let needUpper = true;
 
-  return string.toLowerCase().split('').map((char) => {
-    if (char >= 'a' && char <= 'z') {
-      if (needUpper) {
-        needUpper = false;
-        return char.toUpperCase();
+  return string.toLowerCase().split('').map((char, index) => {
+    if (alphaOnly) {
+      if (char >= 'a' && char <= 'z') {
+        if (needUpper) {
+          needUpper = false;
+          return char.toUpperCase();
+        } else {
+          needUpper = true;
+          return char.toLowerCase();
+        }
       } else {
-        needUpper = true;
-        return char.toLowerCase();
+        return char;
       }
     } else {
-      return char;
+      return (index % 2 === 0) ? char.toUpperCase() : char.toLowerCase();
     }
   }).join('');
 }
 
-console.log(staggeredCase('I love Launch School!'));
-console.log(staggeredCase('ALL CAPS'));
-console.log(staggeredCase('ignore 77 the 4444 numbers'));
+console.log(staggeredCase('I love Launch School!', true));
+console.log(staggeredCase('I love Launch School!', false));
+
+// console.log(staggeredCase('ALL CAPS'));
+// console.log(staggeredCase('ignore 77 the 4444 numbers'));
