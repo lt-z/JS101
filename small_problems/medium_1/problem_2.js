@@ -29,10 +29,10 @@ Convert the number into an array then back into a number.
 // (A)lgorithm
 /*
 1. Convert numbers into an array of strings.
-2. Copy the array and reverse the array.
-3. Slice the array from 0 to the rotated amount.
-4. Combine the non-rotated array with the rotated array.
-
+2. Create front array by slicing up to index.
+3. Create back array by slicing from index + 1.
+4. Create last digit by slicing from index[0].
+5. Combine front array, back array, and last digit.
 */
 
 // (C)ode
