@@ -1,11 +1,8 @@
-let arr = [['a', 1], ['b', 'two'], ['sea', {c: 3}], ['D', ['a', 'b', 'c']]];
+const ARR = [
+  { one: '1', two: 2 },
+  [ { four: 5, three: 6 }, 'three' ],
+  'three',
+  { '2': 'two', '3': 'three' }
+];
 
-
-let newArr = {};
-for (let subArr in arr) {
-  newArr[arr[subArr][0]] = arr[subArr][1];
-}
-console.log(newArr);
-
-// expected return value of function call
-// { a: 1, b: 'two', sea: { c: 3 }, D: [ 'a', 'b', 'c' ] }
+console.log(ARR[1][0][1]);

@@ -24,7 +24,11 @@ Convert string to an array then back to a string.
 
 // (A)lgorithm
 /*
-1. Find matches
+1. Convert string into an array via map.
+2. If word matches with the match word:
+  Return the modified word
+3. Else return the original word.
+4. Convert array into a string.
 */
 
 // (C)ode
