@@ -52,7 +52,47 @@ function diamond(number) {
 }
 
 diamond(7);
-diamond(9);
-diamond(11);
-diamond(13);
-diamond(15);
+// diamond(9);
+// diamond(11);
+// diamond(13);
+// diamond(15);
+
+
+// Further Exploration
+function hollowDiamond(number) {
+  let array = [];
+
+  for (let num = 1; num <= number; num += 2) {
+    array.push('*'.repeat(num));
+  }
+
+  return logDiamond(array);
+}
+
+function logDiamond(array) {
+  array = array.concat(array.slice(0, -1).reverse());
+  array = makeHollow(array);
+  let padCount = Math.floor(array.length / 2) + 1;
+
+  array.forEach((item, index) => {
+    console.log(item.padStart(padCount));
+    if (index < (Math.floor(array.length / 2))) {
+      padCount += 1;
+    } else {
+      padCount -= 1;
+    }
+  });
+}
+
+function makeHollow(array) {
+  return array.map(item => {
+    if (item.length > 1) {
+      return `*${item.slice(1, -1).replaceAll('*', ' ')}*`;
+    } else {
+      return item;
+    }
+  });
+}
+
+hollowDiamond(7);
+hollowDiamond(11);
