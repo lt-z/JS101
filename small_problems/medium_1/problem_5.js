@@ -59,10 +59,11 @@ console.log(wordToDigit('Please call me at five five five one two three four. Th
 
 function wordToDigitRegex(string) {
   Object.keys(NUMBER_WORD).forEach(wordNum => {
-    let re = new RegExp(wordNum, 'g');
+    let re = new RegExp('\\b' + wordNum + '\\b', 'g');
     string = string.replace(re, NUMBER_WORD[wordNum]);
   });
   return string;
 }
 
-console.log(wordToDigitRegex('five one two not a number'));
+console.log(wordToDigitRegex('fiver weighter tone toner'));
+console.log(wordToDigitRegex('five eight one one'));
